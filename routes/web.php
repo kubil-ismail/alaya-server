@@ -56,6 +56,6 @@ $router->group(['middleware' => 'auth'],
         $router->get('/get/admin/treatment/detail/{id}', 'AdminTreatmentController@getTreatmentUserDetail');
         $router->get('/get/admin/absent/{id}', 'AdminAbsentController@getAbsentUser');
         $router->get('/get/admin/absent/detail/{id}', 'AdminAbsentController@getAbsentUserDetail');
-
+        $router->put('/absent/confirm/{id}', 'AdminAbsentController@putAbsentUserConfirm');
     }
 );

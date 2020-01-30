@@ -22,7 +22,10 @@ class AbsentController extends Controller
             'user_id'       => 'required|numeric',
             'position_id'   => 'required|numeric',
             'branch_id'     => 'required|numeric',
-            'absent_time'   => 'required|string'
+            'absent_time'   => 'required|string',
+            'latitude'      => 'required|string',
+            'longitude'     => 'required|string',
+            'absent_status' => 'required|string'
         ]);
         
         $data['user_id']        = $request->input('user_id');
@@ -30,6 +33,9 @@ class AbsentController extends Controller
         $data['branch_id']      = $request->input('branch_id');
         $data['absent_time']    = $request->input('absent_time');
         $data['absent_date']    = date('d/m/Y');
+        $data['latitude']       = $request->input('latitude');
+        $data['longitude']      = $request->input('longitude');
+        $data['absent_status']  = $request->input('absent_status');
 
         $add = new Absent();
         return $add->_CreateAbsent($data);
@@ -40,6 +46,7 @@ class AbsentController extends Controller
     {
         $result = Absent::join('users', 'absents.user_id', '=', 'users.id')
             ->where('absents.user_id', $id)
+            ->where('absent_status',1)
             ->select('absents.*', 'users.fullname')
             ->orderBy('absents.id', 'DESC')
             ->get();
@@ -59,10 +66,19 @@ class AbsentController extends Controller
             ->select('absents.*', 'users.fullname', 'users.user_id', 'branchs.address')
             ->get();
 
-        $res['status']  = true;
-        $res['message'] = "Get Absent History Success";
-        $res['result']  = $result;
-        return response($res, 200);
+        if ($result) {
+            $res['status']  = true;
+            $res['message'] = "Get Absent History Success";
+            $res['result']  = $result;
+            return response($res, 200);
+        } else {
+            $res['status']  = false;
+            $res['message'] = "Get Absent History Failed";
+            $res['result']  = $result;
+            return response($res, 200);
+        }
+            
+
     }
 
 }

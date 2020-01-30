@@ -18,6 +18,8 @@ class CreateAbsents extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('position_id');
             $table->bigInteger('branch_id');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->string('absent_time');
             $table->string('absent_date');
             $table->timestamps();

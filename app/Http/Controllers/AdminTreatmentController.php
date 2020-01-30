@@ -50,10 +50,19 @@ class AdminTreatmentController extends Controller
             ->where('treatment_history.id',$id)
             ->get();
 
-        $res['status']  = true;
-        $res['message'] = "Get Treatment Success";
-        $res['result']  = $result;
-        return response($res, 200);
+        if ($result) {
+            $res['status']  = true;
+            $res['message'] = "Get Treatment Success";
+            $res['result']  = $result;
+            return response($res, 200);
+        } else {
+            $res['status']  = false;
+            $res['message'] = "Get Treatment Failed";
+            $res['result']  = $result;
+            return response($res, 400);
+        }
+            
+
     }
 
     

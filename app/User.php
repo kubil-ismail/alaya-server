@@ -22,7 +22,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'user_id', 'photo', 'fullname','phone', 'password', 'address', 'position_id', 'branch_id', 'api_token','pin'
+        'user_id', 'photo', 'fullname','phone', 'password', 'address', 'position_id', 'branch_id', 'api_token','pin', 'email'
     ];
 
     /**
@@ -44,10 +44,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         if (!$checkID) {
             $register = User::create([
                 'user_id' => $data['user_id'],
-                'photo' => 'default.png',
+                'email' => $data['email'],
+                'photo' => 'default.jpg',
                 'fullname' => $data['fullname'],
                 'phone' => $data['phone'],
-                // 'email' => $data['email'],
                 'pin' => $data['pin'],
                 'password' => $data['password'],
                 'address' => $data['address'],

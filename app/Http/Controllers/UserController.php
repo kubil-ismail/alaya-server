@@ -18,26 +18,26 @@ class UserController extends Controller
     public function register(Request $request)
     {
         $this->validate($request, [
-            'user_id'     => 'required|string',
-            'fullname'     => 'required|string',
-            'phone'     => 'required|string',
-            // 'email'     => 'required|email',
-            'pin'     => 'required|string',
-            'password'     => 'required|string',
-            'address'     => 'required|string',
-            'position_id'     => 'required|string',
-            'branch_id' => 'required|string'
+            'user_id'       => 'required|string',
+            'fullname'      => 'required|string',
+            'phone'         => 'required|string',
+            'email'         => 'required|email',
+            'pin'           => 'required|string',
+            'password'      => 'required|string',
+            'address'       => 'required|string',
+            'position_id'   => 'required|string',
+            'branch_id'     => 'required|string'
         ]);
 
-        $data['user_id'] = $request->input('user_id');
-        $data['fullname'] = $request->input('fullname');
-        $data['phone'] = $request->input('phone');
-        // $data['email'] = $request->input('email');
-        $data['pin'] = $request->input('pin');
-        $data['password'] = Hash::make($request->input('password'));
-        $data['address'] = $request->input('address');
-        $data['position_id'] = $request->input('position_id');
-        $data['branch_id'] = $request->input('branch_id');
+        $data['user_id']        = $request->input('user_id');
+        $data['fullname']       = $request->input('fullname');
+        $data['phone']          = $request->input('phone');
+        $data['email']          = $request->input('email');
+        $data['pin']            = $request->input('pin');
+        $data['password']       = Hash::make($request->input('password'));
+        $data['address']        = $request->input('address');
+        $data['position_id']    = $request->input('position_id');
+        $data['branch_id']      = $request->input('branch_id');
 
         $register = new User();
         return $register->_CreateUser($data);
@@ -51,10 +51,19 @@ class UserController extends Controller
             ->select('users.id as id_user', 'position.id as position_id', 'position.name as position_name', 'branchs.id as branch_id', 'users.*', 'branchs.*', 'position.*')
             ->get();
 
-        $res['status'] = true;
-        $res['message'] = "Get All User Success";
-        $res['result'] = $result;
-        return response($res, 200);
+        if ($result) {
+            $res['status']  = true;
+            $res['message'] = "Get All User Success";
+            $res['result']  = $result;
+            return response($res, 200);
+        } else {
+            $res['status']  = false;
+            $res['message'] = "Get All User Failed";
+            $res['result']  = $result;
+            return response($res, 400);
+        }
+            
+
     }
 
     // Get Select User
@@ -67,14 +76,14 @@ class UserController extends Controller
             ->get();
 
         if ($result) {
-            $res['status'] = true;
+            $res['status']  = true;
             $res['message'] = "Get User Success";
-            $res['result'] = $result;
+            $res['result']  = $result;
             return response($res, 200);
         } else {
-            $res['status'] = false;
+            $res['status']  = false;
             $res['message'] = "User could not be found";
-            $res['result'] = $result;
+            $res['result']  = $result;
             return response($res, 400);
         }
     }
