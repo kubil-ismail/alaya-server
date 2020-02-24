@@ -21,10 +21,17 @@ class BranchController extends Controller
         // RETURN ID & NAME BRANCH
         $result = Branch::all();
 
-        $res['status'] = true;
-        $res['message'] = "Get Branch Success";
-        $res['result'] = $result;
-        return response($res, 200);
+        if ($result) {
+            $res['status']  = true;
+            $res['message'] = "Get Branch Success";
+            $res['result']  = $result;
+            return response($res, 200);
+        } else {
+            $res['status']  = false;
+            $res['message'] = "Get Branch Failed";
+            $res['result']  = $result;
+            return response($res, 400);
+        }
     }
 
     // Delete One User
@@ -81,7 +88,7 @@ class BranchController extends Controller
         $data['phone']        = $request->input('phone');
         $data['map_url']      = $request->input('map_url');
         $data['latitude']     = $request->input('latitude');
-        $data['latitude']     = $request->input('latitude');
+        $data['longitude']     = $request->input('longitude');
         $data['open_hour']    = $request->input('open_hour');
         $data['closing_time'] = $request->input('closing_time');
 

@@ -89,7 +89,7 @@ class Branch extends Model implements AuthenticatableContract, AuthorizableContr
         $branch->phone = $data['phone'];
         $branch->map_url = $data['map_url'];
         $branch->latitude = $data['latitude'];
-        $branch->latitude = $data['latitude'];
+        $branch->longitude = $data['longitude'];
         $branch->open_hour = $data['open_hour'];
         $branch->closing_time = $data['closing_time'];
         $branch->save();

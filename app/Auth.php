@@ -40,7 +40,7 @@ class Auth extends Model implements AuthenticatableContract, AuthorizableContrac
         if ($check) {
             $pass = Hash::check($data['password'], $check->password);
             if ($pass) {
-                
+                    
                 $token = sha1(time());
                 $set_token = User::where('id', $check->id)->update(['api_token' => $token]);
                 $data = User::join('branchs', 'users.branch_id', '=', 'branchs.id')

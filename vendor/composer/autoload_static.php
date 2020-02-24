@@ -393,12 +393,15 @@ class ComposerStaticInitb942758839c1ffc14326d63e91c3ff99
     );
 
     public static $classMap = array (
+        'App\\Absent' => __DIR__ . '/../..' . '/app/Absent.php',
         'App\\Auth' => __DIR__ . '/../..' . '/app/Auth.php',
         'App\\Branch' => __DIR__ . '/../..' . '/app/Branch.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Events\\Event' => __DIR__ . '/../..' . '/app/Events/Event.php',
         'App\\Events\\ExampleEvent' => __DIR__ . '/../..' . '/app/Events/ExampleEvent.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\AbsentController' => __DIR__ . '/../..' . '/app/Http/Controllers/AbsentController.php',
+        'App\\Http\\Controllers\\AdminAbsentController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminAbsentController.php',
         'App\\Http\\Controllers\\AdminTreatmentController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminTreatmentController.php',
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
         'App\\Http\\Controllers\\BranchController' => __DIR__ . '/../..' . '/app/Http/Controllers/BranchController.php',
@@ -3271,6 +3274,7 @@ class ComposerStaticInitb942758839c1ffc14326d63e91c3ff99
         'TheSeer\\Tokenizer\\TokenCollectionException' => __DIR__ . '/..' . '/theseer/tokenizer/src/TokenCollectionException.php',
         'TheSeer\\Tokenizer\\Tokenizer' => __DIR__ . '/..' . '/theseer/tokenizer/src/Tokenizer.php',
         'TheSeer\\Tokenizer\\XMLSerializer' => __DIR__ . '/..' . '/theseer/tokenizer/src/XMLSerializer.php',
+        'UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',

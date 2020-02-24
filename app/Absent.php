@@ -18,7 +18,7 @@ class Absent extends Model implements AuthenticatableContract, AuthorizableContr
      * @var array
      */
     protected $fillable = [
-        'user_id', 'position_id', 'branch_id', 'absent_time', 'absent_date'
+        'user_id', 'position_id', 'branch_id', 'absent_time', 'absent_date', 'latitude', 'longitude', 'absent_status'
     ];
 
     /**
@@ -41,12 +41,16 @@ class Absent extends Model implements AuthenticatableContract, AuthorizableContr
             return response($res, 200);
         } else {
              $absent = Absent::create([
-                'user_id'     => $data['user_id'],
-                'position_id' => $data['position_id'],
-                'branch_id'   => $data['branch_id'],
-                'absent_time' => $data['absent_time'],
-                'absent_date' => $data['absent_date']
+                'user_id'       => $data['user_id'],
+                'position_id'   => $data['position_id'],
+                'branch_id'     => $data['branch_id'],
+                'absent_time'   => $data['absent_time'],
+                'absent_date'   => $data['absent_date'],
+                'latitude'      => $data['latitude'],
+                'longitude'     => $data['longitude'],
+                'absent_status' => $data['absent_status']
             ]);
+
             if ($absent) {
                 $res['status'] = true;
                 $res['message'] = "Add New Absent Success";

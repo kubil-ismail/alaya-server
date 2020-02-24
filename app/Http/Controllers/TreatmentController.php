@@ -24,10 +24,17 @@ class TreatmentController extends Controller
                 ->select('treatment_price.id as treatment_price_id', 'treatments.id as treatment_id', 'treatments.*', 'treatment_price.*')
                 ->get();
 
-        $res['status']  = true;
-        $res['message'] = "Get All Treatment Success";
-        $res['result']  = $result;
-        return response($res, 200);
+        if ($result) {
+            $res['status']  = true;
+            $res['message'] = "Get All Treatment Success";
+            $res['result']  = $result;
+            return response($res, 200);
+        } else {
+            $res['status']  = false;
+            $res['message'] = "Get All Treatment Failed";
+            $res['result']  = $result;
+            return response($res, 400);
+        }
     }
 
     public function getSelectedTreatment($id) {
@@ -36,10 +43,17 @@ class TreatmentController extends Controller
             ->where('treatments.id',$id)
             ->get();
 
-        $res['status']  = true;
-        $res['message'] = "Get Treatment Success";
-        $res['result']  = $result;
-        return response($res, 200);
+        if ($result) {
+            $res['status']  = true;
+            $res['message'] = "Get Treatment Success";
+            $res['result']  = $result;
+            return response($res, 200);
+        } else {
+            $res['status']  = false;
+            $res['message'] = "Get Treatment Failed";
+            $res['result']  = $result;
+            return response($res, 400);
+        }
     }
 
     // GET JUST NAME AND DESC TREATMENT
@@ -47,10 +61,17 @@ class TreatmentController extends Controller
     {
         $result = Treatment::all();
 
-        $res['status']  = true;
-        $res['message'] = "Get All Treatment Success";
-        $res['result']  = $result;
-        return response($res, 200);
+        if ($result) {
+            $res['status']  = true;
+            $res['message'] = "Get All Treatment Success";
+            $res['result']  = $result;
+            return response($res, 200);
+        } else {
+            $res['status']  = false;
+            $res['message'] = "Get All Treatment Failed";
+            $res['result']  = $result;
+            return response($res, 400);
+        }
     }
 
     // CREATE NEW TREATMENT
@@ -127,10 +148,17 @@ class TreatmentController extends Controller
             ->orderBy('treatment_history.id','DESC')
             ->get();
 
-        $res['status']  = true;
-        $res['message'] = "Get All Treatment History Success";
-        $res['result']  = $result;
-        return response($res, 200);
+        if ($result) {
+            $res['status']  = true;
+            $res['message'] = "Get All Treatment History Success";
+            $res['result']  = $result;
+            return response($res, 200);
+        } else {
+            $res['status']  = true;
+            $res['message'] = "Get All Treatment History Failed";
+            $res['result']  = $result;
+            return response($res, 400);
+        }
     }
 
     // Get detail Treatment history
@@ -142,9 +170,18 @@ class TreatmentController extends Controller
             ->where('treatment_history.id', $id)
             ->get();
 
-        $res['status']  = true;
-        $res['message'] = "Get Treatment History Success";
-        $res['result']  = $result;
-        return response($res, 200);
+        if ($result) {
+            $res['status']  = true;
+            $res['message'] = "Get Treatment History Success";
+            $res['result']  = $result;
+            return response($res, 200);
+        } else {
+            $res['status']  = false;
+            $res['message'] = "Get Treatment History Failed";
+            $res['result']  = $result;
+            return response($res, 400);
+        }
+            
+
     }
 }

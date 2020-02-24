@@ -22,7 +22,8 @@ class AdminAbsentController extends Controller
                     ->join('branchs','absents.branch_id','=','branchs.id')
                     ->select('absents.*', 'users.*','absents.id as id','branchs.branch_name')
                     ->orderBy('absents.id','desc')
-                    ->where('absents.branch_id',$id)->get();
+                    ->where('absents.branch_id',$id)
+                    ->get();
 
         if ($result) {
             $res['status']  = true;
@@ -57,5 +58,17 @@ class AdminAbsentController extends Controller
             $res['result']  = $result;
             return response($res, 400);
         }
+    }
+
+    // Confirm absent
+    public function putAbsentUserConfirm($id) {
+        $set_status = Absent::where('id', $id)->update(['absent_status' => 1]);
+
+        if ($set_status) {
+            return response($set_status,200);
+        } else {
+            return response($set_status, 400);
+        }
+        
     }
 }
